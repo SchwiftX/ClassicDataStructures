@@ -17,5 +17,18 @@ public class Demo4DataStructures {
         System.out.println(myHeap);
         System.out.println(myHeap.delete(40));
         System.out.println(myHeap);
+
+        //Demo 4 LFU Cache
+        LFUCache lfu = new LFUCache(3);
+        lfu.put(1, 1);
+        lfu.put(2, 2);
+        System.out.println(lfu.get(1));
+        lfu.put(3, 3);
+        System.out.println(lfu.get(2));
+        System.out.println(lfu.get(3));
+        lfu.put(4, 4);
+        System.out.println(lfu.get(1));
+        System.out.println(lfu.get(3));
+        System.out.println(lfu.get(4));
     }
 }
