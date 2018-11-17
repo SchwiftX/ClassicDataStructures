@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.List;
 
+// Supports deleting any given node in log(n) / HashHeap
 class MyHeap {
     List<Integer> data;
     HashMap<Integer, Integer> map;
