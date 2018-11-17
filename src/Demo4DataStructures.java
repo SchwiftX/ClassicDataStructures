@@ -18,7 +18,13 @@ public class Demo4DataStructures {
         System.out.println(myHeap.delete(40));
         System.out.println(myHeap);
 
-        //Demo 4 LFU Cache
+        // Demo 4 Heap Sort
+        SortAlgorithms sa = new SortAlgorithms();
+        sa.heapSort(data);
+        for (int i : data)
+            System.out.print(i + " ");
+
+        // Demo 4 LFU Cache
         LFUCache lfu = new LFUCache(3);
         lfu.put(1, 1);
         lfu.put(2, 2);

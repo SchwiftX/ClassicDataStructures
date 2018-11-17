@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class SortAlgorithms {
@@ -51,5 +54,12 @@ public class SortAlgorithms {
         }
         quickSort(nums, start, j);
         quickSort(nums, i, end);
+    }
+
+    public void heapSort(Integer[] nums){
+        List<Integer> list = new ArrayList<>(Arrays.asList(nums));
+        MyHeap heap = new MyHeap(list);
+        for (int i = 0; i < nums.length; i++)
+            nums[i] = heap.pop();
     }
 }
