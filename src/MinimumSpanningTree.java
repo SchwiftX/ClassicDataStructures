@@ -1,0 +1,85 @@
+import java.util.*;
+
+public class MinimumSpanningTree { // Minimum Spanning Tree
+    /*给出一些Connections，即Connections类，找到一些能够将所有城市都连接起来并且花费最小的边。
+    如果说可以将所有城市都连接起来，则返回这个连接方法；不然的话返回一个空列表。*/
+    public List<Connection> lowestCost(List<Connection> connections) {
+        List<Connection> res = new ArrayList<>();
+        UnionFindSet ufs = new UnionFindSet(connections.size() * 2); // 最多可能有connections长度2倍的点，但是不一定全都会用到。
+        Collections.sort(connections, new Comparator<Connection>() {
+            @Override
+            public int compare(Connection conn1, Connection conn2) {
+                if(conn1.cost != conn2.cost)
+                    return conn1.cost - conn2.cost;
+                return (conn1.city1 + conn1.city2).compareTo(conn2.city1 + conn2.city2);
+            }
+        });// TODO: 2019/2/9
+        Map<String, Integer> cityMap = new HashMap<>();
+        for (Connection c : connections) {
+            int c1 = getCityId(cityMap, c.city1);
+            int c2 = getCityId(cityMap, c.city2);
+            if(ufs.find(c1) != ufs.find(c2)){ // 表示两个城市尚未联通
+                ufs.union(c1, c2); // 联通
+                res.add(c); // 记入结果
+            }
+        }
+        if(res.size() + 1 == cityMap.size()) // 恰好联通所有城市且没有环路时，道路数目+1 = 城市数量
+            return res;
+        return new ArrayList<>();
+    }
+
+    private int getCityId(Map<String, Integer> cityMap, String cityName) {
+        int id = cityMap.getOrDefault(cityName, -1);
+        if(id == -1){
+            id = cityMap.size();
+            cityMap.put(cityName, id);
+        }
+        return id;
+    }
+}
+
+
+
+class Connection {
+    public String city1, city2;
+    public int cost;
+
+    public Connection(String city1, String city2, int cost) {
+        this.city1 = city1;
+        this.city2 = city2;
+        this.cost = cost;
+    }
+
+    @Override
+    public String toString() {
+        return city1 + " --> " + city2 + " cost:" + cost;
+    }
+}
+
+class UnionFindSet { //根节点为代表元素，其值是负数，负几表示该集合中有几个元素。其余元素的值是父节点的角标
+    int[] set;
+
+    public UnionFindSet(int setSize) {
+        set = new int[setSize];
+        Arrays.fill(set, -1);
+    }
+
+    public void union(int a, int b) {
+        int headA = find(a);
+        int headB = find(b);
+        if (set[headA] < set[headB]) { // 说明A集合大
+            set[headA] += set[headB];
+            set[headB] = headA;
+        } else {
+            set[headB] += set[headA];
+            set[headA] = headB;
+        }
+    }
+
+    public int find(int target) {
+        if (set[target] < 0)
+            return target;
+        set[target] = find(set[target]);
+        return set[target];
+    }
+}

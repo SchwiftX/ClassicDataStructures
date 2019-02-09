@@ -56,6 +56,36 @@ public class SortAlgorithms {
         quickSort(nums, i, end);
     }
 
+    public void mergeSort(int[] A) {
+        if(A == null || A.length <= 1)
+            return;
+        int[] temp = new int[A.length];
+        mergeSort(A, 0, A.length - 1, temp);
+    }
+    private void mergeSort(int[] A, int start, int end, int[] temp){
+        if(start == end)
+            return;
+        int mid = start + (end - start) / 2;
+        mergeSort(A, start, mid, temp);
+        mergeSort(A, mid + 1, end, temp);
+        merge(A, start, mid, end, temp);
+    }
+    private void merge(int[] A, int start, int mid, int end, int[] temp){
+        int l = start, r = mid + 1, index = start;
+        while(l <= mid && r <= end){
+            if(A[l] < A[r])
+                temp[index++] = A[l++];
+            else
+                temp[index++] = A[r++];
+        }
+        while(l <= mid)
+            temp[index++] = A[l++];
+        while(r <= end)
+            temp[index++] = A[r++];
+        for(int i = start; i <= end; i++)
+            A[i] = temp[i];
+    }
+
     public void heapSort(Integer[] nums){
         List<Integer> list = new ArrayList<>(Arrays.asList(nums));
         MyHeap heap = new MyHeap(list);
