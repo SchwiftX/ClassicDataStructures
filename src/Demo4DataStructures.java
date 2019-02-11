@@ -5,12 +5,30 @@ import java.util.List;
 public class Demo4DataStructures {
 
     public static void main(String[] args) {
-        // Demo 4 MinimumSpanningTree
-        MinimumSpanningTree mst = new MinimumSpanningTree();
+
+        // Demo 6 SegmentTree
+        int[] nums = {1, 4, 12, 2, 0, 18, 7, 5, 0, 18};
+        SegmentTree st = new SegmentTree(nums);
+        List<Interval> buildings = new ArrayList<>();
+        buildings.add(new Interval(0,1)); buildings.add(new Interval(4,4)); buildings.add(new Interval(6,9));
+        System.out.println(st.query(buildings));
+        System.out.println(st.query(0,nums.length - 1));
+        List<Interval> rains = new ArrayList<>();
+        rains.add(new Interval(-5, 6, 1));
+        rains.add(new Interval(3, 37, 3));
+        st.add(rains);
+        System.out.println(st.query(buildings));
+        System.out.println(st.query(0,nums.length - 1));
+        st.modify(4,5);
+        System.out.println(st.query(buildings));
+        System.out.println(st.query(0,nums.length - 1));
+
+        // Demo 5 MinimumSpanningTree
+        /*MinimumSpanningTree mst = new MinimumSpanningTree();
         List<Connection> data = new ArrayList<>();
         data.add(new Connection("北","上",3));data.add(new Connection("北","广",2));
         data.add(new Connection("上","广",4));data.add(new Connection("广","深",1));
-        System.out.println(mst.lowestCost(data));
+        System.out.println(mst.lowestCost(data));*/
         // Demo 4 MyHeap
         /*Integer[] data = new Integer[]{30, 20, 10, 40, 50, 14, 15};
         List<Integer> list = new ArrayList<>(Arrays.asList(data));
