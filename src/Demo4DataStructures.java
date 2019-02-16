@@ -3,25 +3,23 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Demo4DataStructures {
-
     public static void main(String[] args) {
-
         // Demo 6 SegmentTree
-        int[] nums = {1, 4, 12, 2, 0, 18, 7, 5, 0, 18};
-        SegmentTree st = new SegmentTree(nums);
-        List<Interval> buildings = new ArrayList<>();
-        buildings.add(new Interval(0,1)); buildings.add(new Interval(4,4)); buildings.add(new Interval(6,9));
-        System.out.println(st.query(buildings));
-        System.out.println(st.query(0,nums.length - 1));
-        List<Interval> rains = new ArrayList<>();
-        rains.add(new Interval(-5, 6, 1));
-        rains.add(new Interval(3, 37, 3));
-        st.add(rains);
-        System.out.println(st.query(buildings));
-        System.out.println(st.query(0,nums.length - 1));
-        st.modify(4,5);
-        System.out.println(st.query(buildings));
-        System.out.println(st.query(0,nums.length - 1));
+//        int[] nums = {1, 4, 12, 2, 0, 18, 7, 5, 0, 18};
+//        SegmentTree st = new SegmentTree(nums);
+//        List<Interval> buildings = new ArrayList<>();
+//        buildings.add(new Interval(0,1)); buildings.add(new Interval(4,4)); buildings.add(new Interval(6,9));
+//        System.out.println(st.query(buildings));
+//        System.out.println(st.query(0,nums.length - 1));
+//        List<Interval> rains = new ArrayList<>();
+//        rains.add(new Interval(-5, 6, 1));
+//        rains.add(new Interval(3, 37, 3));
+//        st.add(rains);
+//        System.out.println(st.query(buildings));
+//        System.out.println(st.query(0,nums.length - 1));
+//        st.modify(4,5);
+//        System.out.println(st.query(buildings));
+//        System.out.println(st.query(0,nums.length - 1));
 
         // Demo 5 MinimumSpanningTree
         /*MinimumSpanningTree mst = new MinimumSpanningTree();

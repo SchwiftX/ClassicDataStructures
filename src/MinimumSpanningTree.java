@@ -21,7 +21,7 @@ public class MinimumSpanningTree { // Minimum Spanning Tree
             UnionFindSetEnhanced ufs2 = cityMap.getOrDefault(c.city2, new UnionFindSetEnhanced());
             cityMap.put(c.city1, ufs1);
             cityMap.put(c.city2, ufs2);
-            if(ufs1.find() != ufs2.find()){
+            if (ufs1.find() != ufs2.find()) {
                 ufs1.union(ufs2);
                 res.add(c);
             }
@@ -83,6 +83,8 @@ class UnionFindSet { //根节点为代表元素，其值是负数，负几表示
     public void union(int a, int b) {
         int headA = find(a);
         int headB = find(b);
+        if (headA == headB)
+            return;
         if (set[headA] < set[headB]) { // 说明A集合大
             set[headA] += set[headB];
             set[headB] = headA;
@@ -90,6 +92,10 @@ class UnionFindSet { //根节点为代表元素，其值是负数，负几表示
             set[headB] += set[headA];
             set[headA] = headB;
         }
+    }
+
+    public boolean isConnected(int a, int b) {
+        return find(a) == find(b);
     }
 
     public int find(int target) {
