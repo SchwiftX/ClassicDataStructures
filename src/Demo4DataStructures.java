@@ -1,9 +1,16 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Demo4DataStructures {
     public static void main(String[] args) {
+
+        List<Element> list = new ArrayList<>();
+        list.add(new Element("A1", "a1@gmail.com", "a2@gmail.com"));
+        list.add(new Element("A2", "b1@gmail.com", "a2@gmail.com"));
+        list.add(new Element("A3", "c1@gmail.com"));
+        list.add(new Element("A4", "c1@gmail.com", "d1@gmail.com"));
+        list.add(new Element("A5", "b1@gmail.com", "e1@gmail.com"));
+        System.out.println(emailMergeProblem(list));
+
         // Demo 6 SegmentTree
 //        int[] nums = {1, 4, 12, 2, 0, 18, 7, 5, 0, 18};
 //        SegmentTree st = new SegmentTree(nums);
@@ -66,4 +73,44 @@ public class Demo4DataStructures {
         System.out.println(lfu.get(3));
         System.out.println(lfu.get(4));*/
     }
+
+    private static List<List<String>> emailMergeProblem(List<Element> list){
+        //邮箱合并问题 给出几家合并公司的账号以及账号绑定的邮箱，
+        //合并那些具有相同绑定邮箱的账号。
+        /*Example：
+        { "A1": ["a1@gmail.com", "a2@gmail.com"],
+            "A2": ["b1@gmail.com", "a2@gmail.com"],
+            "A3": ["c1@gmail.com"],
+            "A4": ["c1@gmail.com", "d1@gmail.com"],
+            "A5": ["b1@gmail.com", "e1@gmail.com"]}
+        Output：["A1", "A2", "A5"], ["A3", "A4"]*/
+
+        Map<UnionFindSetEnhanced, List<String>> setMap = new HashMap<>();
+        Map<String, UnionFindSetEnhanced> ufseMap = new HashMap<>();
+        for(Element e : list){
+            UnionFindSetEnhanced lastUfse = null;
+            for(int i = 0; i < e.emails.size(); i++){
+                UnionFindSetEnhanced ufse = ufseMap.getOrDefault(e.emails.get(i), new UnionFindSetEnhanced());
+                ufseMap.put(e.emails.get(i), ufse);
+                if(lastUfse != null)
+                    ufse.union(lastUfse);
+                lastUfse = ufse;
+            }
+            UnionFindSetEnhanced topUfse = lastUfse.find();
+            List<String> strs = setMap.getOrDefault(topUfse, new ArrayList<>());
+            setMap.put(topUfse, strs);
+            strs.add(e.account);
+        }
+        Collection<List<String>> values = setMap.values();
+        return new ArrayList<>(values);
+    }
+}
+class Element{
+    String account;
+    List<String> emails;
+    Element(String account, String ... strings){
+        this.account = account;
+        emails = Arrays.asList(strings);
+    }
+
 }

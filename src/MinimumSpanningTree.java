@@ -85,13 +85,17 @@ class UnionFindSet { //根节点为代表元素，其值是负数，负几表示
         int headB = find(b);
         if (headA == headB)
             return;
-        if (set[headA] < set[headB]) { // 说明A集合大
+        if (set[headA] <= set[headB]) { // 说明A集合大
             set[headA] += set[headB];
             set[headB] = headA;
         } else {
             set[headB] += set[headA];
             set[headA] = headB;
         }
+    }
+
+    public int getSize(int target){
+        return -set[find(target)];
     }
 
     public boolean isConnected(int a, int b) {
