@@ -2,14 +2,25 @@ import java.util.*;
 
 public class Demo4DataStructures {
     public static void main(String[] args) {
+        // Demo 8 Trie
+//        Trie trie = new Trie();
+//        trie.insert("aab");
+//        trie.insert("aab");
+//        trie.insert("abc");
+//        System.out.println(trie.search("ab"));
+//        System.out.println(trie.search("aab"));
+//        System.out.println(trie.startsWith("aa"));
+//        System.out.println(trie.startsWith("ab"));
+//        System.out.println(trie.startsWith("ac"));
 
-        List<Element> list = new ArrayList<>();
-        list.add(new Element("A1", "a1@gmail.com", "a2@gmail.com"));
-        list.add(new Element("A2", "b1@gmail.com", "a2@gmail.com"));
-        list.add(new Element("A3", "c1@gmail.com"));
-        list.add(new Element("A4", "c1@gmail.com", "d1@gmail.com"));
-        list.add(new Element("A5", "b1@gmail.com", "e1@gmail.com"));
-        System.out.println(emailMergeProblem(list));
+        // Demo 7 Email using Union Find Set
+//        List<Element> list = new ArrayList<>();
+//        list.add(new Element("A1", "a1@gmail.com", "a2@gmail.com"));
+//        list.add(new Element("A2", "b1@gmail.com", "a2@gmail.com"));
+//        list.add(new Element("A3", "c1@gmail.com"));
+//        list.add(new Element("A4", "c1@gmail.com", "d1@gmail.com"));
+//        list.add(new Element("A5", "b1@gmail.com", "e1@gmail.com"));
+//        System.out.println(emailMergeProblem(list));
 
         // Demo 6 SegmentTree
 //        int[] nums = {1, 4, 12, 2, 0, 18, 7, 5, 0, 18};
