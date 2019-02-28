@@ -69,10 +69,14 @@ public class Demo4DataStructures {
         SortAlgorithms s = new SortAlgorithms();
         System.out.println(Arrays.toString(ints));
         s.mergeSort(ints);
-        System.out.println(Arrays.toString(ints));
+        System.out.println(Arrays.toString(ints));*/
+        int[] ints = new int[]{30, 20, 10, 40, 50, 14, 15};
+        SortAlgorithms s = new SortAlgorithms();
+        System.out.println(s.quickSelect(ints, 0, ints.length - 1, 2));
+        System.out.println(s.quickSelectAdvanced(ints, 0, ints.length - 1, 2));
 
         // Demo 4 LFU Cache
-        LFUCache lfu = new LFUCache(3);
+        /*LFUCache lfu = new LFUCache(3);
         lfu.put(1, 1);
         lfu.put(2, 2);
         System.out.println(lfu.get(1));
